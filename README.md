@@ -1,66 +1,46 @@
-# Progressive Face Super-Resolution
-[Deokyun Kim*](https://www.linkedin.com/in/deokyun-kim-44157a151), [Minseon Kim*](https://kim-minseon.github.io/), Gihyun Kwon*, and Dae-shik Kim, [Progressive Face Super-Resolution via Attention to Facial Landmark](https://arxiv.org/abs/1908.08239), The British Machine Vision Conference 2019 (BMVC 2019)
-
-*The authors have equally contributed.
-
+# JDSR-GAN
+Lei Tang, Guangwei Gao, Yi Yu,  Fei Wu, Huimin Lu and Jian Yang, JDSR-GAN: Constructing A Joint and Collaborative Learning Network for Masked Face Super-Resolution
 
 ## Overview
 ![our structure](./figure/our_structure.png)
 
-> **Progressive Face Super-Resolution via Attention to Facial Landmark**<br>
-> Deokyun Kim (KAIST), Minseon Kim (KAIST), Gihyun Kwon (KAIST), et al.<br>
-> **Abstract:** *Face Super-Resolution (SR) is a subfield of the SR domain that specifically targets the reconstruction of face images. The main challenge of face SR is to restore essential facial features without distortion. We propose a novel face SR method that generates photo-realistic 8× super-resolved face images with fully retained facial details. To that end, we adopt a progressive training method, which allows stable training by splitting the network into successive steps, each producing output with a progressively higher resolution. We also propose a novel facial attention loss and apply it at each step to focus on restoring facial attributes in greater details by multiplying the pixel difference and heatmap values. Lastly, we propose a compressed version of the state-of-the-art face alignment network (FAN) for landmark heatmap extraction. With the proposed FAN, we can extract the heatmaps suitable for face SR and also reduce the overall training time. Experimental results verify that our method outperforms state-of-the-art methods in both qualitative and quantitative measurements, especially in perceptual quality*.
+> **A Joint and Collaborative Learning Network for Masked Face Super-Resolution**<br>
+>Lei Tang (NJUPT), Guangwei Gao (NJUPT), et al.<br>
+> **Abstract:** *With the growing importance of preventing the COVID-19 virus, face images obtained in
+most video surveillance scenarios are low resolution with mask simultaneously. However,
+most of the previous face super-resolution solutions can not handle both tasks in one model.
+In this work, we treat the mask occlusion as image noise and construct a joint and collaborative learning network, called JDSR-GAN, for the masked face super-resolution task. Given
+a low-quality face image with the mask as input, the role of the generator composed of a
+denoising module and super-resolution module is to acquire a high-quality high-resolution
+face image. The discriminator utilizes some carefully designed loss functions to ensure the
+quality of the recovered face images. Moreover, we incorporate the identity information
+and attention mechanism into our network for feasible correlated feature expression and
+informative feature learning. By jointly performing denoising and face super-resolution, the
+two tasks can complement each other and attain promising performance. Extensive qualitative and quantitative results show the superiority of our proposed JDSR-GAN over some
+comparable methods which perform the previous two tasks separately.*.
 
 
 ### Prerequisites
 * Python 3.6
-* Pytorch 1.0.0
-* CUDA 9.0 or higher
+* Pytorch 1.2.0
+* CUDA 10.1 or higher
 
 This code support [NVIDIA apex-Distributed Training in Pytorch](https://github.com/NVIDIA/apex), please follow description. 
-Also, we refered state-of-the-art [Face Alignment Network](https://github.com/1adrianb/face-alignment) in order to get face SR-oriented facial landmark heatmap.
+
 
 ### Data Preparation
 
 * [CelebA dataset](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
 
-create a folder:
 
-```bash
- mkdir dataset
-
-```
-and then, download dataset. Anno & Img.
 
 #### Demonstration
-* Single face image demonstartion
-```bash
-$ python demo.py --image-path ./figure/eval_target_image.jpeg --checkpoint-path 'CHECKPOINT_PATH/generator_checkpoint_singleGPU.ckpt' --output-path './OUTPUT_PATH/OUTPUT_NAME.jpeg'
-```
+
 
 
 #### Test model
-* Test trained model
-```bash
-$ python eval.py --data-path './dataset' --checkpoint-path 'CHECKPOINT_PATH/generator_checkpoint_singleGPU.ckpt'
-```
-
-* Test distributed trained model
-```bash
-$ python -m torch.distributed.launch --nproc_per_node=number_of_used_GPUs eval.py \
-                                                 --distributed \
-                                                 --data-path './dataset' \
-                                                 --checkpoint-path 'CHECKPOINT_PATH/generator_checkpoint.ckpt'
-```
 
 
 ## Citation
-```bash
-@inproceedings{progressive-face-sr,
-    author    = {Deokyun Kim, Minseon Kim, Gihyun Kwon, Dae-Shik Kim}, 
-    title     = {Progressive Face Super-Resolution via Attention to Facial Landmark}, 
-    booktitle = {Proceedings of the 30th British Machine Vision Conference (BMVC)},
-    year  = {2019}
-}
-```
+
 
