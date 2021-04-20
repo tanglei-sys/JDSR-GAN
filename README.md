@@ -35,8 +35,7 @@ This code support [NVIDIA apex-Distributed Training in Pytorch](https://github.c
 
 
 #### Results
-
-
+![Results](./figure/results.png)
 
 #### Test model
 
